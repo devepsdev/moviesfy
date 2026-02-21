@@ -1,0 +1,188 @@
+<div class="container mt-4">
+    @if (loading) {
+    <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="mt-3 text-muted">Cargando película...</p>
+    </div>
+    }
+
+    @if (error) {
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">¡Error!</h4>
+        <p class="mb-0">{{ error }}</p>
+        <hr>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-danger" (click)="loadMovie()">
+                Reintentar
+            </button>
+            <button class="btn btn-secondary" (click)="goBack()">
+                Volver
+            </button>
+        </div>
+    </div>
+    }
+
+    @if (!loading && !error && movie) {
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="/movies">Películas</a>
+            </li>
+            <li class="breadcrumb-item active">{{ movie.title }}</li>
+        </ol>
+    </nav>
+
+    <!-- Botones de acción superiores -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <button class="btn btn-outline-secondary" (click)="goBack()">
+            <i class="bi bi-arrow-left"></i> Volver
+        </button>
+        <div class="btn-group">
+            <a [routerLink]="['/movies', movie._id, 'edit']" class="btn btn-primary">
+                <i class="bi bi-pencil"></i> Editar
+            </a>
+            <button class="btn btn-outline-danger" (click)="confirmDelete()">
+                <i class="bi bi-trash"></i> Eliminar
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="row">
+        <!-- Imagen -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow">
+                <img [src]="movie.image_url || 'https://via.placeholder.com/400x600/6c757d/ffffff?text=Sin+Imagen'"
+                    class="card-img-top rounded" [alt]="movie.title"
+                    style="width: 100%; height: auto; max-height: 600px; object-fit: cover;"
+                    (error)="onImageError($event)">
+            </div>
+        </div>
+
+        <!-- Información -->
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h1 class="card-title display-5 text-primary mb-3">
+                        {{ movie.title }}
+                    </h1>
+
+                    @if (movie.description) {
+                    <div class="mb-4">
+                        <h5 class="text-muted">Sinopsis</h5>
+                        <p class="lead">{{ movie.description }}</p>
+                    </div>
+                    }
+
+                    <!-- Información en grid -->
+                    <div class="row g-4">
+                        @if (movie.year) {
+                        <div class="col-sm-6 col-md-4">
+                            <div class="info-card">
+                                <div class="info-icon">📅</div>
+                                <div class="info-content">
+                                    <h6 class="text-muted mb-1">Año</h6>
+                                    <h4 class="mb-0">{{ movie.year }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                        @if (movie.rating) {
+                        <div class="col-sm-6 col-md-4">
+                            <div class="info-card">
+                                <div class="info-icon">⭐</div>
+                                <div class="info-content">
+                                    <h6 class="text-muted mb-1">Rating</h6>
+                                    <h4 class="mb-0 text-warning">
+                                        {{ movie.rating }}/10
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                        @if (movie.votes) {
+                        <div class="col-sm-6 col-md-4">
+                            <div class="info-card">
+                                <div class="info-icon">👥</div>
+                                <div class="info-content">
+                                    <h6 class="text-muted mb-1">Votos</h6>
+                                    <h4 class="mb-0 text-info">{{ movie.votes }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+
+                    <!-- Rating visual si existe -->
+                    @if (movie.rating) {
+                    <div class="mt-4">
+                        <h6 class="text-muted mb-2">Calificación visual</h6>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-warning" role="progressbar"
+                                [style.width.%]="(movie.rating / 10) * 100">
+                                {{ movie.rating }}/10
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    <!-- Acciones inferiores -->
+                    <div class="mt-4 pt-3 border-top">
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <a [routerLink]="['/movies', movie._id, 'edit']" class="btn btn-primary w-100">
+                                    <i class="bi bi-pencil"></i> Editar Película
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <button class="btn btn-outline-danger w-100" (click)="confirmDelete()">
+                                    <i class="bi bi-trash"></i> Eliminar Película
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">⚠️ Confirmar Eliminación</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                @if (movie) {
+                <p>¿Estás seguro de que quieres eliminar la película:</p>
+                <div class="alert alert-warning">
+                    <strong>{{ movie.title }}</strong>
+                    @if (movie.year) {
+                    <span> ({{ movie.year }})</span>
+                    }
+                </div>
+                <p class="text-muted">
+                    <small>Esta acción no se puede deshacer.</small>
+                </p>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" (click)="deleteMovie()">
+                    <i class="bi bi-trash"></i> Eliminar Definitivamente
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

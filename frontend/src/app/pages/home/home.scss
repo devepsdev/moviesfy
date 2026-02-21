@@ -1,0 +1,23 @@
+/* Iconito del hero */
+.emoji-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 28px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: #6f42c1;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Demo GIF */
+.demo-gif {
+  max-height: 520px; /* ajusta si tu GIF es más alto */
+  object-fit: contain;
+}
+
+/* Ajustes menores */
+hr {
+  opacity: 0.15;
+}

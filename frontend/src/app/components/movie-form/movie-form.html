@@ -1,0 +1,231 @@
+<div class="container mt-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a routerLink="/movies">Películas</a>
+                    </li>
+                    @if (isEditMode && movie) {
+                    <li class="breadcrumb-item">
+                        <a [routerLink]="['/movies', movie._id]">{{ movie.title }}</a>
+                    </li>
+                    <li class="breadcrumb-item active">Editar</li>
+                    } @else {
+                    <li class="breadcrumb-item active">Nueva Película</li>
+                    }
+                </ol>
+            </nav>
+
+            <h1 class="display-5 fw-bold text-primary">
+                @if (isEditMode) {
+                ✏️ Editar Película
+                } @else {
+                ➕ Nueva Película
+                }
+            </h1>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-outline-secondary" (click)="goBack()">
+                <i class="bi bi-arrow-left"></i> Cancelar
+            </button>
+        </div>
+    </div>
+
+    @if (loading) {
+    <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="mt-2 text-muted">
+            @if (isEditMode) {
+            Cargando película...
+            } @else {
+            Preparando formulario...
+            }
+        </p>
+    </div>
+    }
+
+    @if (error) {
+    <div class="alert alert-danger" role="alert">
+        <h5 class="alert-heading">Error</h5>
+        <p class="mb-0">{{ error }}</p>
+    </div>
+    }
+
+    @if (!loading) {
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <!-- Formulario -->
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Información de la Película</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Título -->
+                        <div class="mb-3">
+                            <label for="title" class="form-label">
+                                Título <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" [class.is-invalid]="isFieldInvalid('title')"
+                                id="title" formControlName="title" placeholder="Ingresa el título de la película">
+                            @if (isFieldInvalid('title')) {
+                            <div class="invalid-feedback">
+                                @if (movieForm.get('title')?.errors?.['required']) {
+                                El título es obligatorio
+                                }
+                                @if (movieForm.get('title')?.errors?.['maxlength']) {
+                                El título no puede superar 255 caracteres
+                                }
+                            </div>
+                            }
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descripción</label>
+                            <textarea class="form-control" [class.is-invalid]="isFieldInvalid('description')"
+                                id="description" formControlName="description" rows="4"
+                                placeholder="Describe brevemente la película..."></textarea>
+                            @if (isFieldInvalid('description')) {
+                            <div class="invalid-feedback">
+                                La descripción no puede superar 255 caracteres
+                            </div>
+                            }
+                        </div>
+
+                        <!-- Año y Rating en fila -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="year" class="form-label">Año</label>
+                                <input type="number" class="form-control" [class.is-invalid]="isFieldInvalid('year')"
+                                    id="year" formControlName="year" placeholder="2024" min="1888" max="2100">
+                                @if (isFieldInvalid('year')) {
+                                <div class="invalid-feedback">
+                                    @if (movieForm.get('year')?.errors?.['min']) {
+                                    El año mínimo es 1888
+                                    }
+                                    @if (movieForm.get('year')?.errors?.['max']) {
+                                    El año máximo es 2100
+                                    }
+                                </div>
+                                }
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="rating" class="form-label">
+                                    Rating
+                                    <small class="text-muted">(0-10)</small>
+                                </label>
+                                <input type="number" class="form-control" [class.is-invalid]="isFieldInvalid('rating')"
+                                    id="rating" formControlName="rating" placeholder="8.5" min="0" max="10" step="0.1">
+                                @if (isFieldInvalid('rating')) {
+                                <div class="invalid-feedback">
+                                    El rating debe estar entre 0 y 10
+                                </div>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Votos -->
+                        <div class="mb-3">
+                            <label for="votes" class="form-label">Número de Votos</label>
+                            <input type="number" class="form-control" [class.is-invalid]="isFieldInvalid('votes')"
+                                id="votes" formControlName="votes" placeholder="1250" min="0">
+                            @if (isFieldInvalid('votes')) {
+                            <div class="invalid-feedback">
+                                Los votos deben ser un número positivo
+                            </div>
+                            }
+                        </div>
+
+                        <!-- URL de imagen -->
+                        <div class="mb-3">
+                            <label for="image_url" class="form-label">URL de la Imagen</label>
+                            <input type="url" class="form-control" [class.is-invalid]="isFieldInvalid('image_url')"
+                                id="image_url" formControlName="image_url" placeholder="https://ejemplo.com/imagen.jpg"
+                                (input)="onImageUrlChange()">
+                            @if (isFieldInvalid('image_url')) {
+                            <div class="invalid-feedback">
+                                Debe ser una URL válida
+                            </div>
+                            }
+                            <div class="form-text">
+                                Proporciona una URL válida para mostrar la imagen de la película
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-secondary" (click)="goBack()">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </button>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" (click)="resetForm()">
+                            <i class="bi bi-arrow-counterclockwise"></i> Reiniciar
+                        </button>
+                        <button type="submit" class="btn btn-success" [disabled]="movieForm.invalid || submitting">
+                            @if (submitting) {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                            }
+                            @if (isEditMode) {
+                            <i class="bi bi-check-circle"></i> Actualizar
+                            } @else {
+                            <i class="bi bi-plus-circle"></i> Crear
+                            }
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista previa -->
+            <div class="col-lg-4">
+                <div class="card shadow sticky-top">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">👀 Vista Previa</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <!-- Imagen preview -->
+                        <img [src]="getPreviewImage()" class="card-img-top" style="height: 300px; object-fit: cover;"
+                            alt="Vista previa" (error)="onPreviewImageError($event)">
+
+                        <div class="p-3">
+                            <h5 class="card-title">
+                                {{ movieForm.get('title')?.value || 'Título de la película' }}
+                            </h5>
+                            <p class="card-text text-muted small">
+                                {{ movieForm.get('description')?.value || 'Sin descripción' }}
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    {{ movieForm.get('year')?.value || 'N/A' }}
+                                </small>
+                                @if (movieForm.get('rating')?.value) {
+                                <span class="badge bg-warning text-dark">
+                                    ⭐ {{ movieForm.get('rating')?.value }}/10
+                                </span>
+                                }
+                            </div>
+
+                            @if (movieForm.get('votes')?.value) {
+                            <div class="text-center mt-2">
+                                <small class="text-info">
+                                    {{ movieForm.get('votes')?.value }} votos
+                                </small>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    }
+</div>

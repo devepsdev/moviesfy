@@ -1,0 +1,115 @@
+<div class="container py-4">
+
+    <!-- HERO -->
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="d-flex align-items-center gap-3">
+            <div class="emoji-icon shadow-sm">🎬</div>
+            <div>
+                <h1 class="mb-0 fw-bold text-primary">Películas</h1>
+                <p class="text-muted mb-0">{{ subtitle }}</p>
+            </div>
+        </div>
+
+        <a class="btn btn-success btn-lg" [routerLink]="links.create">
+            Nueva Película
+        </a>
+    </div>
+
+    <hr>
+
+    <!-- BLOQUE DE FILTROS / BUSCADOR (explicativo) -->
+    <div class="mb-4">
+        <button class="btn btn-outline-primary" type="button" disabled>
+            <i class="bi bi-search"></i>
+            Filtros y Búsqueda
+        </button>
+        <small class="text-muted ms-2">
+            (En la lista podrás abrir menús para filtrar por
+            <em>q</em>, <em>year</em>, <em>rating</em>, orden y límite.)
+        </small>
+    </div>
+
+    <!-- EJEMPLO DE PAGINACIÓN MOSTRADA -->
+    <p class="text-muted">
+        Mostrando {{ stats.samplePage === 1 ? 1 : ((stats.samplePage - 1) * stats.sampleLimit) + 1 }}
+        – {{ stats.samplePage * stats.sampleLimit }}
+        de {{ stats.sampleTotal }} películas
+    </p>
+
+    <!-- SECCIÓN DEMO (GIF) -->
+    <section class="mb-5">
+        <h2 class="h4 mb-3">Demostración del proyecto</h2>
+        <p class="text-muted">
+            Aquí puedes ver el flujo completo: filtros, cambio de vista (grid/lista),
+            paginación, creación/edición con vista previa y confirmaciones de borrado.
+        </p>
+        <div class="text-center">
+            <!-- Coloca tu GIF en /public/demo-movies.gif -->
+            <img [src]="demoGifSrc" alt="Demo CRUD de Películas" class="img-fluid rounded shadow demo-gif">
+            <div class="form-text mt-2">
+                (Archivo servido desde <code>public/</code> en Angular 20)
+            </div>
+        </div>
+    </section>
+
+    <!-- TECNOLOGÍAS Y CARACTERÍSTICAS -->
+    <div class="row g-4">
+        <!-- Backend -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h3 class="h5 fw-bold mb-3">Backend: API REST CRUD (Express + MySQL)</h3>
+                    <p class="mb-3">
+                        API construida con <strong>Express</strong>, conectada a <strong>MySQL</strong> y protegida con
+                        <strong>helmet</strong>, <strong>cors</strong> y <strong>morgan</strong>.
+                        Validación de datos con <strong>Zod</strong>.
+                    </p>
+                    <ul class="list-unstyled mb-3">
+                        <li>✅ Endpoints: <code>GET/POST/PUT/DELETE</code> en <code>/api/movies</code></li>
+                        <li>✅ Paginación: <code>?page</code>, <code>?limit</code></li>
+                        <li>✅ Ordenación: <code>?sort</code> (id, title, year, rating, votes) +
+                            <code>?order=ASC|DESC</code></li>
+                        <li>✅ Filtros: <code>?q</code>, <code>?year</code>, <code>?minRating</code>,
+                            <code>?maxRating</code></li>
+                    </ul>
+                    <small class="text-muted">
+                        Respuesta de listado: <code>{{ '{' }} total, page, limit, results: Movie[] {{ '}' }}</code>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h3 class="h5 fw-bold mb-3">Frontend: Angular + Bootstrap</h3>
+                    <p class="mb-3">
+                        SPA desarrollada en <strong>Angular</strong> (standalone components) con estilos
+                        de <strong>Bootstrap</strong>.
+                    </p>
+                    <ul class="list-unstyled mb-3">
+                        <li>✅ Vistas: <em>Grid</em> y <em>Lista</em></li>
+                        <li>✅ Filtros desplegables y búsqueda</li>
+                        <li>✅ Paginación integrada</li>
+                        <li>✅ Formularios dinámicos de crear/editar con vista previa</li>
+                        <li>✅ Modales de confirmación para eliminar</li>
+                    </ul>
+
+                    <div class="d-flex gap-2">
+                        <a class="btn btn-primary" [routerLink]="links.movies">Ver Películas</a>
+                        <a class="btn btn-outline-secondary" [routerLink]="links.create">Crear una nueva</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center my-5">
+        <a class="btn btn-lg btn-primary px-4" [routerLink]="links.movies">
+            Ir al listado
+        </a>
+    </div>
+
+</div>
