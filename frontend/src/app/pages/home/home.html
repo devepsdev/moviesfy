@@ -9,10 +9,14 @@
                 <p class="text-muted mb-0">{{ subtitle }}</p>
             </div>
         </div>
-
-        <a class="btn btn-success btn-lg" [routerLink]="links.create">
-            Nueva Película
-        </a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-success btn-lg" [routerLink]="links.create">
+                Nueva Película
+            </a>
+            <a class="btn btn-lg btn-primary px-4" [routerLink]="links.movies">
+                Ir al listado
+            </a>
+        </div>
     </div>
 
     <hr>
@@ -40,8 +44,8 @@
     <section class="mb-5">
         <h2 class="h4 mb-3">Demostración del proyecto</h2>
         <p class="text-muted">
-            Aquí puedes ver el flujo completo: filtros, cambio de vista (grid/lista),
-            paginación, creación/edición con vista previa y confirmaciones de borrado.
+            Aquí puedes ver el flujo completo: cambio de vista (grid/lista),
+            creación/edición con vista previa y confirmaciones de borrado.
         </p>
         <div class="text-center">
             <!-- Coloca tu GIF en /public/demo-movies.gif -->
@@ -58,9 +62,9 @@
         <div class="col-lg-6">
             <div class="card shadow-sm h-100">
                 <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3">Backend: API REST CRUD (Express + MySQL)</h3>
+                    <h3 class="h5 fw-bold mb-3">Backend: API REST CRUD (Express + MongoDB)</h3>
                     <p class="mb-3">
-                        API construida con <strong>Express</strong>, conectada a <strong>MySQL</strong> y protegida con
+                        API construida con <strong>Express</strong>, conectada a <strong>MongoDB</strong> y protegida con
                         <strong>helmet</strong>, <strong>cors</strong> y <strong>morgan</strong>.
                         Validación de datos con <strong>Zod</strong>.
                     </p>

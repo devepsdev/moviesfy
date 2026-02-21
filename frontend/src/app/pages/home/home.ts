@@ -12,7 +12,7 @@ export class Home {
   subtitle = 'Explora nuestra colección de películas';
 
   // Ruta del GIF de demo (colócalo en /public)
-  demoGifSrc = '/movies/Animation.gif';
+  demoGifSrc = './Animation.gif';
 
   // Contadores opcionales (puedes alimentarlos desde la API si quieres)
   stats = {
