@@ -127,21 +127,13 @@ sudo journalctl -u movies.service -f
 
 ## 👨‍💻 Autor
 
-**deveps** - _Desarrollo Full Stack_
+**DevEps** - Desarrollador Full Stack
 
-- GitHub: [@devepsdev](https://github.com/devepsdev)
+- GitHub: [github.com/devepsdev](https://github.com/devepsdev)
 - Portfolio: [deveps.ddns.net](https://deveps.ddns.net)
-
-## 🔗 Enlaces Relacionados
-
-- [Live Demo](https://deveps.ddns.net/movies)
-
-## 📞 Contacto
-
-Enrique — [@devepsdev](https://x.com/devepsdev) — <devepsdev@gmail.com>
+- Email: devepsdev@gmail.com
+- LinkedIn: [www.linkedin.com/in/enrique-perez-sanchez](https://www.linkedin.com/in/enrique-perez-sanchez/)
 
 ---
 
-⭐ ¡Dale una estrella a este proyecto si te ha gustado!
-
-💡 ¿Tienes ideas para mejorar? ¡Abre un issue o contribuye con código!
+⭐ ¡Dale una estrella si el proyecto te ha resultado útil!
