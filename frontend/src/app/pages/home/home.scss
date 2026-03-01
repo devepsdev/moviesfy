@@ -208,8 +208,14 @@
     color: rgba(255, 255, 255, 0.65);
     font-size: 0.925rem;
     line-height: 1.5;
+    min-width: 0;
+    overflow-wrap: anywhere;
 
     &:last-child { border-bottom: none; }
+
+    code {
+      word-break: break-all;
+    }
   }
 
   .chk {
