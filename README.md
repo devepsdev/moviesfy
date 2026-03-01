@@ -2,8 +2,6 @@
 
 Aplicación full-stack para gestión de películas construida con el stack **MEAN** (MongoDB, Express, Angular, Node.js).
 
-![Demo del Proyecto](./Animation.gif)
-
 ---
 
 ## 📦 Estructura del Proyecto
@@ -12,7 +10,6 @@ Aplicación full-stack para gestión de películas construida con el stack **MEA
 moviesfy/
 ├── backend/   # Backend - API REST con Express + MongoDB
 ├── frontend/  # Frontend - Angular + TypeScript + Bootstrap
-├── Animation.gif
 └── README.md
 ```
 
@@ -20,14 +17,15 @@ moviesfy/
 
 ## 🛠 Tecnologías
 
-| Capa       | Tecnología                                      |
-| ---------- | ----------------------------------------------- |
-| Frontend   | Angular v20, Bootstrap v5, TypeScript, RxJS     |
-| Backend    | Node.js, Express.js v5, Mongoose v9             |
-| Base datos | MongoDB v8                                      |
-| Validación | Zod                                             |
-| Seguridad  | Helmet, CORS                                    |
-| Logging    | Morgan                                          |
+| Capa       | Tecnología                                                        |
+| ---------- | ----------------------------------------------------------------- |
+| Frontend   | Angular v20, Bootstrap v5, TypeScript, RxJS                       |
+| UI/Diseño  | Bootstrap 5 dark mode, Inter (Google Fonts), Bootstrap Icons CDN  |
+| Backend    | Node.js, Express.js v5, Mongoose v9                               |
+| Base datos | MongoDB v8                                                        |
+| Validación | Zod                                                               |
+| Seguridad  | Helmet, CORS                                                      |
+| Logging    | Morgan                                                            |
 
 ---
 
@@ -131,7 +129,7 @@ sudo journalctl -u movies.service -f
 
 - GitHub: [github.com/devepsdev](https://github.com/devepsdev)
 - Portfolio: [deveps.ddns.net](https://deveps.ddns.net)
-- Email: devepsdev@gmail.com
+- Email: [devepsdev@gmail.com](mailto:devepsdev@gmail.com)
 - LinkedIn: [www.linkedin.com/in/enrique-perez-sanchez](https://www.linkedin.com/in/enrique-perez-sanchez/)
 
 ---

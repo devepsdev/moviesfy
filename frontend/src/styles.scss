@@ -1,1 +1,120 @@
-/* You can add global styles to this file, and also import other style files */
+/* ─── Global theme overrides ─────────────────────────────────────── */
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Bootstrap dark-mode + primary colour (purple) ─────────────── */
+[data-bs-theme='dark'] {
+  --bs-body-bg: #0d0d1a;
+  --bs-body-color: #e2e8f0;
+  --bs-primary: #7c3aed;
+  --bs-primary-rgb: 124, 58, 237;
+  --bs-link-color: #a78bfa;
+  --bs-link-hover-color: #c4b5fd;
+  --bs-border-color: rgba(255, 255, 255, 0.08);
+  --bs-card-bg: #16161f;
+  --bs-card-border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Button primary ─────────────────────────────────────────────── */
+.btn-primary {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus-visible {
+  background-color: #6d28d9;
+  border-color: #6d28d9;
+}
+
+.btn-outline-primary {
+  color: #a78bfa;
+  border-color: #7c3aed;
+}
+.btn-outline-primary:hover {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+  color: #fff;
+}
+
+/* ─── Text / bg helpers ──────────────────────────────────────────── */
+.text-primary { color: #a78bfa !important; }
+.bg-primary   { background-color: #7c3aed !important; }
+
+/* ─── Ratings badge (gold) ───────────────────────────────────────── */
+.badge.bg-warning {
+  background-color: #f5c518 !important;
+  color: #000 !important;
+  font-weight: 700;
+}
+
+/* ─── Pagination ─────────────────────────────────────────────────── */
+.page-link { color: #a78bfa; }
+.page-link:hover { color: #c4b5fd; }
+.page-item.active .page-link {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+}
+
+/* ─── Form focus ring ────────────────────────────────────────────── */
+.form-control:focus,
+.form-select:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 0.2rem rgba(124, 58, 237, 0.25);
+}
+
+/* ─── Code inline ────────────────────────────────────────────────── */
+code {
+  color: #a78bfa;
+  background: rgba(124, 58, 237, 0.12);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+/* ─── Breadcrumb links ───────────────────────────────────────────── */
+.breadcrumb-item a {
+  color: #a78bfa;
+  text-decoration: none;
+}
+.breadcrumb-item a:hover { color: #c4b5fd; }
+
+/* ─── Spinner ────────────────────────────────────────────────────── */
+.spinner-border.text-primary { color: #7c3aed !important; }
+
+/* ─── Cards ──────────────────────────────────────────────────────── */
+.card {
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ─── Navbar ─────────────────────────────────────────────────────── */
+.app-navbar {
+  background: rgba(10, 10, 20, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+.navbar-brand {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.5px;
+  color: #ffffff !important;
+}
+
+.app-navbar .nav-link {
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.app-navbar .nav-link:hover,
+.app-navbar .nav-link.active {
+  color: #a78bfa;
+}

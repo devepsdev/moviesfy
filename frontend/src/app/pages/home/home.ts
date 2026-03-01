@@ -11,9 +11,6 @@ export class Home {
   // Texto breve para el hero
   subtitle = 'Explora nuestra colección de películas';
 
-  // Ruta del GIF de demo (colócalo en /public)
-  demoGifSrc = './Animation.gif';
-
   // Contadores opcionales (puedes alimentarlos desde la API si quieres)
   stats = {
     samplePage: 1,

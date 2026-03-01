@@ -1,119 +1,154 @@
-<div class="container py-4">
+<main>
 
-    <!-- HERO -->
-    <div class="d-flex align-items-center justify-content-between mb-3">
-        <div class="d-flex align-items-center gap-3">
-            <div class="emoji-icon shadow-sm">🎬</div>
-            <div>
-                <h1 class="mb-0 fw-bold text-primary">Películas</h1>
-                <p class="text-muted mb-0">{{ subtitle }}</p>
-            </div>
-        </div>
-        <div class="d-flex gap-2">
-            <a class="btn btn-success btn-lg" [routerLink]="links.create">
-                Nueva Película
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section class="hero-section">
+    <div class="container py-hero">
+      <div class="row align-items-center gy-5">
+
+        <!-- Copy -->
+        <div class="col-lg-7">
+          <span class="hero-badge mb-4 d-inline-block">🎬 Tu colección de cine</span>
+          <h1 class="hero-title">
+            Descubre y gestiona<br>
+            <span class="hero-title-accent">tu mundo del cine</span>
+          </h1>
+          <p class="hero-subtitle">{{ subtitle }}</p>
+          <div class="d-flex flex-wrap gap-3 mt-5">
+            <a class="btn btn-primary btn-lg rounded-pill px-5" [routerLink]="links.movies">
+              <i class="bi bi-collection-play me-2"></i>Ver Catálogo
             </a>
-            <a class="btn btn-lg btn-primary px-4" [routerLink]="links.movies">
-                Ir al listado
+            <a class="btn btn-outline-light btn-lg rounded-pill px-5" [routerLink]="links.create">
+              <i class="bi bi-plus-lg me-2"></i>Nueva Película
             </a>
+          </div>
         </div>
-    </div>
 
-    <hr>
-
-    <!-- BLOQUE DE FILTROS / BUSCADOR (explicativo) -->
-    <div class="mb-4">
-        <button class="btn btn-outline-primary" type="button" disabled>
-            <i class="bi bi-search"></i>
-            Filtros y Búsqueda
-        </button>
-        <small class="text-muted ms-2">
-            (En la lista podrás abrir menús para filtrar por
-            <em>q</em>, <em>year</em>, <em>rating</em>, orden y límite.)
-        </small>
-    </div>
-
-    <!-- EJEMPLO DE PAGINACIÓN MOSTRADA -->
-    <p class="text-muted">
-        Mostrando {{ stats.samplePage === 1 ? 1 : ((stats.samplePage - 1) * stats.sampleLimit) + 1 }}
-        – {{ stats.samplePage * stats.sampleLimit }}
-        de {{ stats.sampleTotal }} películas
-    </p>
-
-    <!-- SECCIÓN DEMO (GIF) -->
-    <section class="mb-5">
-        <h2 class="h4 mb-3">Demostración del proyecto</h2>
-        <p class="text-muted">
-            Aquí puedes ver el flujo completo: cambio de vista (grid/lista),
-            creación/edición con vista previa y confirmaciones de borrado.
-        </p>
-        <div class="text-center">
-            <!-- Coloca tu GIF en /public/demo-movies.gif -->
-            <img [src]="demoGifSrc" alt="Demo CRUD de Películas" class="img-fluid rounded shadow demo-gif">
-            <div class="form-text mt-2">
-                (Archivo servido desde <code>public/</code> en Angular 20)
-            </div>
+        <!-- Decorative poster grid -->
+        <div class="col-lg-5 d-none d-lg-flex justify-content-center">
+          <div class="poster-grid">
+            <div class="poster-tile">🎭</div>
+            <div class="poster-tile">🎥</div>
+            <div class="poster-tile">🎞️</div>
+            <div class="poster-tile">🌟</div>
+          </div>
         </div>
-    </section>
 
-    <!-- TECNOLOGÍAS Y CARACTERÍSTICAS -->
-    <div class="row g-4">
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Stats bar ─────────────────────────────────────────────── -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="row g-4 justify-content-center text-center py-4">
+        <div class="col-6 col-md-3">
+          <div class="stat-number">{{ stats.sampleTotal }}+</div>
+          <div class="stat-label">Películas</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-number">CRUD</div>
+          <div class="stat-label">API completa</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-number">10/10</div>
+          <div class="stat-label">Calidad</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Posibilidades</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ──────────────────────────────────────────────── -->
+  <section class="py-6">
+    <div class="container">
+      <h2 class="section-title text-center mb-5">¿Qué puedes hacer?</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card h-100">
+            <div class="feature-icon">🔍</div>
+            <h3 class="feature-title">Busca y filtra</h3>
+            <p class="feature-desc">
+              Filtra por título, año y rating. Ordena de forma ascendente o descendente
+              y ajusta cuántas películas ver por página.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card h-100">
+            <div class="feature-icon">⭐</div>
+            <h3 class="feature-title">Ratings y votos</h3>
+            <p class="feature-desc">
+              Consulta el rating (0-10) y el número de votos de cada título.
+              Vista en barra de progreso incluida.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card h-100">
+            <div class="feature-icon">✏️</div>
+            <h3 class="feature-title">Gestión completa</h3>
+            <p class="feature-desc">
+              Crea, edita y elimina películas con formularios validados y
+              vista previa en tiempo real.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Tech stack ────────────────────────────────────────────── -->
+  <section class="py-6">
+    <div class="container">
+      <h2 class="section-title text-center mb-5">Tecnologías</h2>
+      <div class="row g-4">
+
         <!-- Backend -->
         <div class="col-lg-6">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3">Backend: API REST CRUD (Express + MongoDB)</h3>
-                    <p class="mb-3">
-                        API construida con <strong>Express</strong>, conectada a <strong>MongoDB</strong> y protegida con
-                        <strong>helmet</strong>, <strong>cors</strong> y <strong>morgan</strong>.
-                        Validación de datos con <strong>Zod</strong>.
-                    </p>
-                    <ul class="list-unstyled mb-3">
-                        <li>✅ Endpoints: <code>GET/POST/PUT/DELETE</code> en <code>/api/movies</code></li>
-                        <li>✅ Paginación: <code>?page</code>, <code>?limit</code></li>
-                        <li>✅ Ordenación: <code>?sort</code> (id, title, year, rating, votes) +
-                            <code>?order=ASC|DESC</code></li>
-                        <li>✅ Filtros: <code>?q</code>, <code>?year</code>, <code>?minRating</code>,
-                            <code>?maxRating</code></li>
-                    </ul>
-                    <small class="text-muted">
-                        Respuesta de listado: <code>{{ '{' }} total, page, limit, results: Movie[] {{ '}' }}</code>
-                    </small>
-                </div>
+          <div class="tech-card h-100">
+            <div class="tech-card-head">
+              <span class="tech-tag">Backend</span>
+              <h3 class="tech-title">Express + MongoDB</h3>
             </div>
+            <ul class="tech-list">
+              <li><span class="chk">✓</span> Endpoints <code>GET / POST / PUT / DELETE</code> en <code>/api/movies</code></li>
+              <li><span class="chk">✓</span> Paginación: <code>?page</code>, <code>?limit</code></li>
+              <li><span class="chk">✓</span> Ordenación: <code>?sort</code> + <code>?order=ASC|DESC</code></li>
+              <li><span class="chk">✓</span> Filtros: <code>?q</code>, <code>?year</code>, <code>?minRating</code>, <code>?maxRating</code></li>
+              <li><span class="chk">✓</span> Seguridad: <strong>helmet</strong>, <strong>cors</strong>, <strong>morgan</strong></li>
+              <li><span class="chk">✓</span> Validación con <strong>Zod</strong></li>
+            </ul>
+          </div>
         </div>
 
         <!-- Frontend -->
         <div class="col-lg-6">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h3 class="h5 fw-bold mb-3">Frontend: Angular + Bootstrap</h3>
-                    <p class="mb-3">
-                        SPA desarrollada en <strong>Angular</strong> (standalone components) con estilos
-                        de <strong>Bootstrap</strong>.
-                    </p>
-                    <ul class="list-unstyled mb-3">
-                        <li>✅ Vistas: <em>Grid</em> y <em>Lista</em></li>
-                        <li>✅ Filtros desplegables y búsqueda</li>
-                        <li>✅ Paginación integrada</li>
-                        <li>✅ Formularios dinámicos de crear/editar con vista previa</li>
-                        <li>✅ Modales de confirmación para eliminar</li>
-                    </ul>
-
-                    <div class="d-flex gap-2">
-                        <a class="btn btn-primary" [routerLink]="links.movies">Ver Películas</a>
-                        <a class="btn btn-outline-secondary" [routerLink]="links.create">Crear una nueva</a>
-                    </div>
-                </div>
+          <div class="tech-card h-100">
+            <div class="tech-card-head">
+              <span class="tech-tag frontend">Frontend</span>
+              <h3 class="tech-title">Angular + Bootstrap</h3>
             </div>
+            <ul class="tech-list">
+              <li><span class="chk">✓</span> Angular 20 · Standalone Components</li>
+              <li><span class="chk">✓</span> Vistas <em>Grid</em> y <em>Lista</em></li>
+              <li><span class="chk">✓</span> Filtros desplegables y búsqueda en tiempo real</li>
+              <li><span class="chk">✓</span> Paginación integrada</li>
+              <li><span class="chk">✓</span> Formularios con vista previa dinámica</li>
+              <li><span class="chk">✓</span> Modales de confirmación para eliminar</li>
+            </ul>
+            <div class="mt-4">
+              <a class="btn btn-primary rounded-pill px-5" [routerLink]="links.movies">
+                <i class="bi bi-arrow-right-circle me-2"></i>Explorar catálogo
+              </a>
+            </div>
+          </div>
         </div>
-    </div>
 
-    <!-- CTA -->
-    <div class="text-center my-5">
-        <a class="btn btn-lg btn-primary px-4" [routerLink]="links.movies">
-            Ir al listado
-        </a>
+      </div>
     </div>
+  </section>
 
-</div>
+</main>

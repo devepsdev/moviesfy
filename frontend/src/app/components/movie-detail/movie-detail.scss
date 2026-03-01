@@ -1,42 +1,55 @@
+// ── Info cards ────────────────────────────────────────────────────
 .info-card {
   display: flex;
   align-items: center;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 0.5rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
   height: 100%;
+  transition: background 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background: rgba(124, 58, 237, 0.08);
+    border-color: rgba(124, 58, 237, 0.25);
+  }
 }
 
 .info-icon {
   font-size: 2rem;
   margin-right: 1rem;
-  opacity: 0.8;
+  flex-shrink: 0;
 }
 
 .info-content h4 {
   font-weight: 700;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
+// ── Rating bar ────────────────────────────────────────────────────
 .progress {
   border-radius: 10px;
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  height: 14px !important;
 }
 
 .progress-bar {
-  font-weight: 600;
-  font-size: 0.875rem;
+  font-weight: 700;
+  font-size: 0.78rem;
+  background: linear-gradient(90deg, #f5c518, #e6a817) !important;
 }
 
+// ── Cards & images ────────────────────────────────────────────────
 .card {
-  border: none;
-  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 18px !important;
+  overflow: hidden;
 }
 
-img {
-  border-radius: 15px;
-}
+img { border-radius: 18px !important; }
 
 .display-5 {
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -1px;
 }
