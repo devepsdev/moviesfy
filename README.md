@@ -128,7 +128,6 @@ sudo journalctl -u movies.service -f
 **DevEps** - Desarrollador Full Stack
 
 - GitHub: [github.com/devepsdev](https://github.com/devepsdev)
-- Portfolio: [deveps.ddns.net](https://deveps.ddns.net)
 - Email: [devepsdev@gmail.com](mailto:devepsdev@gmail.com)
 - LinkedIn: [www.linkedin.com/in/enrique-perez-sanchez](https://www.linkedin.com/in/enrique-perez-sanchez/)
 
